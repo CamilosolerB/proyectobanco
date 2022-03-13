@@ -98,41 +98,122 @@ public class Servletlogin extends HttpServlet {
                         fecnac = lgg.getFechanac();
                             switch (rr) {
                                 case "admin":
-                                    JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
-                                    sesion.setAttribute("usuario", uu);
-                                    sesion.setAttribute("rol", rr);
-                                    sesion.setAttribute("foto", ff);
-                                    sesion.setAttribute("nombre", nn);
-                                    sesion.setAttribute("apellido", aa);
-                                    rd=request.getRequestDispatcher("/indexa.jsp");
-                                    rd.forward(request, response);
+                                    switch(sex){
+                                        case "Masculino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response); 
+                                        break;
+                                        case "Femenino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenida al sistema");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response);
+                                        break;
+                                        case  "No binario":
+                                            JOptionPane.showMessageDialog(null, "Bienvenide al sistema");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response);  
+                                    }
                                     break;
                                 case "empleado":
-                                    JOptionPane.showMessageDialog(null, "Bienvenido al sistema - empleado");
-                                    sesion.setAttribute("usuario", uu);
-                                    JOptionPane.showMessageDialog(null, uu);
-                                    sesion.setAttribute("rol", rr);
-                                    sesion.setAttribute("foto", ff);
-                                    sesion.setAttribute("nombre", nn);
-                                    sesion.setAttribute("apellido", aa);
-                                    request.getRequestDispatcher("cliente.jsp").forward(request, response);
-                                    //rd.forward(request, response);
+                                    switch(sex){
+                                        case "Masculino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenido al sistema - empleado");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response); 
+                                        break;
+                                        case "Femenino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenida al sistema - empleado");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response);
+                                        break;
+                                        case  "No binario":
+                                            JOptionPane.showMessageDialog(null, "Bienvenide al sistema - empleado");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            rd=request.getRequestDispatcher("/indexa.jsp");
+                                            rd.forward(request, response);  
+                                    }
                                     break;
                                 case "cliente":
-                                JOptionPane.showMessageDialog(null, "Bienvenido al sistema - clientes");
-                                    sesion.setAttribute("usuario", uu);
-                                    sesion.setAttribute("rol", rr);
-                                    sesion.setAttribute("foto", ff);
-                                    sesion.setAttribute("nombre", nn);
-                                    sesion.setAttribute("apellido", aa);
-                                    sesion.setAttribute("documento", dd);
-                                    sesion.setAttribute("password", cl);
-                                    sesion.setAttribute("correo", cc);
-                                    sesion.setAttribute("celular", cel);
-                                    sesion.setAttribute("sexo", sex);
-                                    sesion.setAttribute("fecha", fecnac);
-                                rd=request.getRequestDispatcher("/vistacliente.jsp");
-                                rd.forward(request, response);
+                                    switch(sex){
+                                        case "Masculino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenido al sistema - clientes");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            sesion.setAttribute("documento", dd);
+                                            sesion.setAttribute("password", cl);
+                                            sesion.setAttribute("correo", cc);
+                                            sesion.setAttribute("celular", cel);
+                                            sesion.setAttribute("sexo", sex);
+                                            sesion.setAttribute("fecha", fecnac);
+                                            rd=request.getRequestDispatcher("/vistacliente.jsp");
+                                            rd.forward(request, response);
+                                        break;
+                                        case "Femenino":
+                                            JOptionPane.showMessageDialog(null, "Bienvenida al sistema - clientes");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            sesion.setAttribute("documento", dd);
+                                            sesion.setAttribute("password", cl);
+                                            sesion.setAttribute("correo", cc);
+                                            sesion.setAttribute("celular", cel);
+                                            sesion.setAttribute("sexo", sex);
+                                            sesion.setAttribute("fecha", fecnac);
+                                            response.sendRedirect("vistacliente.jsp");
+                                            //rd=request.getRequestDispatcher("/vistacliente.jsp");
+                                            //rd.forward(request, response);
+                                        break;
+                                        case  "No binario":
+                                            JOptionPane.showMessageDialog(null, "Bienvenide al sistema - clientes");
+                                            sesion.setAttribute("usuario", uu);
+                                            sesion.setAttribute("rol", rr);
+                                            sesion.setAttribute("foto", ff);
+                                            sesion.setAttribute("nombre", nn);
+                                            sesion.setAttribute("apellido", aa);
+                                            sesion.setAttribute("documento", dd);
+                                            sesion.setAttribute("password", cl);
+                                            sesion.setAttribute("correo", cc);
+                                            sesion.setAttribute("celular", cel);
+                                            sesion.setAttribute("sexo", sex);
+                                            sesion.setAttribute("fecha", fecnac);
+                                            rd=request.getRequestDispatcher("/vistacliente.jsp");
+                                            rd.forward(request, response);
+                                    }
                                     break;
                                 default:
                                     JOptionPane.showMessageDialog(null,"rol no encontrado");

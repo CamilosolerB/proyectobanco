@@ -9,7 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%
     ArrayList<Linea> linea = new ArrayList<>();
-    String cod = (String) session.getAttribute("codigo");
+    String cod = (String) session.getAttribute("documento");
     Linea lin = new Linea(cod);
     LineaDAO ldao =  new LineaDAO();
     linea = ldao.consultaind(lin);
@@ -86,30 +86,34 @@
         <div class="field">
             <label class="label">Codigo de la linea</label>
             <div class="control">
-                <input class="input" value="<%=lind.getCodigo()%>" type="number" placeholder="Documento" name="adoc">
+                <input class="input" value="<%=lind.getCodigo()%>" type="number" placeholder="Documento" name="adoc" disabled>
             </div>
           </div>
           
           <div class="field">
             <label class="label">Numero de linea</label>
             <div class="control">
-                <input class="input" value="<%=lind.getNumero()%>" type="text" placeholder="Nombre" name="anom">
+                <input class="input" value="<%=lind.getNumero()%>" type="text" placeholder="Nombre" name="anom" disabled>
             </div>
           </div>
           <div class="field">
             <label class="label">Monto maximo</label>
             <div class="control">
-                <input class="input" value="<%=lind.getMonto()%>" type="text" placeholder="Apellido" name="aape">
+                <input class="input" value="<%=lind.getMonto()%>" type="text" placeholder="Apellido" name="aape" disabled>
             </div>
           </div>
           
           <div class="field">
             <label class="label">Plazo maximo</label>
             <div class="control">
-                <input class="input" value="<%=lind.getPlazo()%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+                <input class="input" value="<%=lind.getPlazo()%>" type="number" placeholder="e.g. alexsmith@gmail.com" name="aema" disabled>
             </div>
           </div>
         </form>
+            <form action="Servletcreditos" method="POST" class="container m-6 p-4 box">
+                <input type="hidden" name="adoc" value="<%=cod%>">
+                <input type="submit" value="Ver mis productos" class="button is-primary" name="pdfind"/>
+            </form>
         <%}%>
     </body>
 </html>

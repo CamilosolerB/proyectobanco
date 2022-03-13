@@ -5,14 +5,34 @@
  */
 package controlador;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.html.simpleparser.HTMLWorker;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import modelo.Credito;
 import modelo.CreditoDAO;
@@ -35,7 +55,6 @@ public class Servletcreditos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         RequestDispatcher rd;
         String codigo,documento, codlinea, fecha;
         int monto, plazo;
@@ -95,6 +114,96 @@ public class Servletcreditos extends HttpServlet {
                 JOptionPane.showMessageDialog(null, "Fallo al eliminar");
                 rd = request.getRequestDispatcher("/credito.jsp");
                 rd.forward(request, response);
+            }
+        }
+        if(request.getParameter("pdfind")!=null){
+            HttpSession sesion = request.getSession();
+            response.setContentType("application/pdf");
+            String doc = request.getParameter("adoc");
+            Credito cre = new Credito(doc);
+            CreditoDAO cdao = new CreditoDAO();
+            ArrayList <Credito> tcredido = new ArrayList<>();
+            tcredido = cdao.Consultacreditoind(cre);
+            OutputStream out = response.getOutputStream();
+            String usu = (String) sesion.getAttribute("usuario");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            
+            Document documen = new Document();
+            try {
+                PdfWriter.getInstance(documen, out);
+                documen.open();
+                
+                HTMLWorker htmlworker = new HTMLWorker(documen);
+                //tabla
+                PdfPTable table = new PdfPTable(6);
+                table.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.setWidthPercentage(80);
+                
+                PdfPCell cod =new PdfPCell(new Paragraph("Codigo",
+                FontFactory.getFont("arial",12,Font.BOLD,BaseColor.BLACK)));
+                
+                PdfPCell docu =new PdfPCell(new Paragraph("Documento",
+                FontFactory.getFont("arial",10,Font.BOLD,BaseColor.BLACK)));
+            
+                PdfPCell codlin =new PdfPCell(new Paragraph("Codigo de linea",
+                FontFactory.getFont("arial",10,Font.BOLD,BaseColor.BLACK)));
+                
+                PdfPCell mont =new PdfPCell(new Paragraph("Monto",
+                FontFactory.getFont("arial",10,Font.BOLD,BaseColor.BLACK)));
+                
+                PdfPCell fecg =new PdfPCell(new Paragraph("Fecha de generacion",
+                FontFactory.getFont("arial",10,Font.BOLD,BaseColor.BLACK)));
+                
+                PdfPCell pla =new PdfPCell(new Paragraph("Plazo",
+                FontFactory.getFont("arial",10,Font.BOLD,BaseColor.BLACK)));
+                
+                table.addCell(cod);
+                table.addCell(docu);
+                table.addCell(codlin);
+                table.addCell(mont);
+                table.addCell(fecg);
+                table.addCell(pla);
+                
+                for(Credito lista: tcredido){
+                    table.addCell(lista.getCodigo());
+                    table.addCell(lista.getDocumento());
+                    table.addCell(lista.getCodlinea());
+                    String mnt = String.valueOf(lista.getMonto());
+                    table.addCell(mnt);
+                    table.addCell(lista.getFecha());
+                    String plaz = String.valueOf(lista.getPlazo());
+                    table.addCell(plaz);
+                }
+                
+                String text = 
+                            "<html>"+
+                            "<head></head>"+
+                                "<body>"+
+                                "<nav>"
+                                  +"<img src=\"https://centrocomercialportoalegre.com/wp-content/uploads/2018/03/marca-banco-caja-social-centro-comercial-portoalegre.jpg\">" +
+                                    "<h1 class=\"title\">Banco caja social</h1><br>"+
+                                "</nav>"+
+                                    "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque animi ea harum saepe similique ab dicta in eligendi cupiditate. Nam mollitia amet delectus corporis provident quidem corrupti porro minus dolore!</p>" +
+                                    "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem inventore sit, animi excepturi esse labore, rem cumque voluptate perspiciatis consequuntur ea facere quod fuga. Iste tempora repellendus quae cupiditate eveniet.</p><br>"
+                                + "<form action=\"\">";
+                                    
+                String text2= 
+                                "</form>"
+                                    + "<br><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit similique consequatur voluptatibus ipsum fuga? Minus dolorum, consectetur deleniti, consequatur qui eligendi, fugiat adipisci alias dolorem illum explicabo aut dolores quisquam.</p>\n" +
+                                      "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus deleniti a tempore! Deleniti non amet sint nobis quisquam, veniam facere harum asperiores totam provident earum, accusantium magnam, quo voluptate doloremque.</p>\n" +
+                                    "<footer>" +
+                                        "<br><p>Comunicate con nosotros: 31000000000</p>" +
+                                        "<p>Hora de generacion: "+dtf.format(LocalDateTime.now())+"</p>" +
+                                        "<p>Generado por: "+usu+"</p>" +
+                                    "</footer>"+
+                                "</body>"+
+                            "</html>";
+                htmlworker.parse(new StringReader(text));
+                documen.add(table);
+                htmlworker.parse(new StringReader(text2));
+                documen.close();
+            } catch (DocumentException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }

@@ -82,8 +82,6 @@
       </nav>
     <%
       for(Credito lista:credito){  
-          String codlinea = lista.getCodlinea();
-          sesion.setAttribute("codigo", codlinea);
     %>    
             <form action="Servletcliente" method="GET" class="container m-6 p-4 box">
         <h1 class="label">Mis Creditos</h1>

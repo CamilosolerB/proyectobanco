@@ -111,6 +111,7 @@
                           <td>
                             <button name="update" class="btn btn-success"><i class="fa-solid fa-pen-clip"></i></button>
                             <button name="delete" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                            <button name="pdfind" class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i></button>
                           </td>
                         </tr>
                       </form>

@@ -89,7 +89,7 @@ public class LineaDAO {
     public ArrayList<Linea> consultaind(Linea li){
         ArrayList<Linea> lista = new ArrayList<Linea>();
             try {
-            ps=mysql.prepareStatement("Select * from lineas Where codlinea=?");
+            ps=mysql.prepareStatement("Select codlinea,nomlinea,montomaximo,plazomax from lineas inner join creditos on (codlinea=codlineacre) Where documentocre=?");
             ps.setString(1, li.getCodigo());
             rs=ps.executeQuery();
             while(rs.next()){
