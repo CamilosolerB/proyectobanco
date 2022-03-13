@@ -1,0 +1,27 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 23/02/2022, 8:51:40 a. m.
+    Author     : SENA
+*/
+body{
+    background: url(https://img.freepik.com/vector-gratis/fondo-cuadrados-modernos-estilo-empresarial-digital_1017-23833.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    backdrop-filter: blur(80%);
+}
+.container{
+    background-color: #fff;
+    width: 10%;
+    border: 2px #222 solid;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-radius: 10px;
+    margin: 7%;
+}
+.img{
+    width: 100%;
+    height: 100%;
+}

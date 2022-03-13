@@ -1,0 +1,99 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 18/02/2022, 1:49:10 p. m.
+    Author     : SENA
+*/
+body{
+background: rgb(0,6,50);
+background: radial-gradient(circle, rgba(0,6,50,1) 24%, rgba(0,0,0,1) 73%);
+}
+
+.formulario{
+    position: relative;
+    width: 40%;
+    left: 28%;
+    top: 30%;
+    background-color: #C8CCF3;
+    border-radius: 5px;
+    box-shadow: inset black;
+    padding: 3%
+}
+.formulario input{
+  margin-bottom: 20px;
+  display: inline-block;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+.formulario select{
+  margin-bottom: 20px;
+  display: inline-block;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+.formulario label{
+  display: inline-block;
+  width: 20%;
+}
+button{
+    width: 100%;
+    height: 20%;
+    background-color: #0A80F5;
+    color: #fff;
+    border: #0AC6FF 2px solid;
+    border-radius: 5px;
+}
+.foto{
+    width: 300px;
+    height: 100px;
+}
+nav{
+    margin: 0px;
+    border:0px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D00000;
+}
+nav ul{
+    list-style: none;
+}
+nav li{
+   display: inline-block; 
+}
+nav ul li a{
+    transition: 2s;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+.section{
+    width: 80%;
+    margin: 10%;
+}
+.imgs{
+    width: 10px;
+    height: 10px;
+}
+.containers{
+    background-color: #fff;
+    display: block;
+    width: 20%;
+    height: 100%;
+    padding: 5%;
+}
+
+.containers a{
+    display: block;
+    background: rgb(0,6,50);
+    background: radial-gradient(circle, rgba(0,6,50,1) 24%, rgba(0,0,0,1) 73%);
+    padding: 10%;
+    margin: 5%;
+    color: #fff;
+}
