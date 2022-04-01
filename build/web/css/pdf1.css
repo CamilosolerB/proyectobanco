@@ -1,0 +1,40 @@
+form{
+    width: 40%;
+    background-color: #f4f4f4;
+    margin-left: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+.h1{
+    text-align: center;
+}
+nav{
+    display: flex;
+    padding-top: 5px;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: #0052EB;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+img{
+    margin-right: 2px;
+    height: 80px;
+    width: 300px;
+    display: block;
+}
+.title{
+    padding-left: 15px;
+    width: 20%;
+    display: block;
+    margin: 0;
+}
+footer{
+    background-color: #0052EB;
+    padding: 3%;
+}
